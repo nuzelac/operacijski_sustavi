@@ -2,22 +2,32 @@
 #include <csignal>
 #include <cstdlib>
 #include <unistd.h>
+#include "signali.h"
 
 #define N 6 // broj razina prekida
-#define K 5 // broj signala
 
 int OZNAKA_CEKANJA[N];
 int PRIORITET[N];
 int TEKUCI_PRIORITET;
 
-int sig[] = {SIGUSR1, SIGUSR2, SIGTERM, SIGPIPE, SIGINT};
-
 void dump(int mjesto, char znak) {
     for(int i = 0; i < K + 1; ++i) {
-        if (i == mjesto)
+        if (i == mjesto) {
             printf(" %c", znak);
-        else
+        } else {
             printf(" -");
+        }
+    }
+    printf("\n");
+}
+
+void dump(int mjesto, int brojac) {
+   for(int i = 0; i < K + 1; ++i) {
+        if (i == mjesto) {
+            printf("%d", brojac);
+        } else {
+            printf(" -");
+        }
     }
     printf("\n");
 }
@@ -36,7 +46,7 @@ void obrada_prekida(int i) {
     dump(i, 'P');
     for(int j = 0; j < 5; ++j) {
         sleep(1);
-        dump(i, j + '1'); 
+        dump(i, (char)(j + '1')); 
     }
     dump(i, 'K');
 }
@@ -91,9 +101,12 @@ int main() {
 
     printf("Proces obrade prekida, PID=%d\n", getpid());
     printf("GP 1 2 3 4 5\n");
-    for(int i = 0; i < 9; ++i) {
+    for(int i = 0; i < 99; ++i) {
         sleep(1);
-        dump(0, i + '1');
+        if(i < 9)
+            dump(0, (char)(i + '1'));
+        else
+            dump(0, i+1);
     }
 
     printf("Zavrsio osnovni program\n");
