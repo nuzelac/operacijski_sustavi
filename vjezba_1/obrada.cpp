@@ -72,7 +72,7 @@ void prekidna_rutina(int sig) {
         break;
     }
     dump(n, 'X');
-    OZNAKA_CEKANJA[n] = 1;
+    OZNAKA_CEKANJA[n]++;
     int x = 0;
     do {
         x = 0;
@@ -83,7 +83,7 @@ void prekidna_rutina(int sig) {
         }
 
         if(x > 0) {
-            OZNAKA_CEKANJA[x] = 0;
+            OZNAKA_CEKANJA[x]--;
             PRIORITET[x] = TEKUCI_PRIORITET;
             TEKUCI_PRIORITET = x;
             dozvoli_prekidanje();
