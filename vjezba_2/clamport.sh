@@ -1,1 +1,1 @@
-g++ $1.cpp -o $1.out -Wall -lm
+g++ lamport.cpp -o lamport.out -Wall -lm
