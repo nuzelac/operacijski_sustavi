@@ -1,1 +1,1 @@
-g++ $1.cpp -o $1.out -Wall -lm -O2
+g++ $1.cpp -o $1.out -Wall -lm
