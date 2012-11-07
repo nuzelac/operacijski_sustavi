@@ -53,7 +53,7 @@ void proces(int i) {
         }
         izadji_iz_ko(i);
     }
-    }
+}
 
 void izlaz(int sig) {
     shmctl(id, IPC_RMID, NULL);
@@ -74,7 +74,6 @@ int main(int argc, char **argv) {
     procesi = (struct proc *) shmat(id, NULL, 0);
 
     for(int i = 0; i < br_procesa; ++i) {
-        //procesi[i] = (struct proc *)malloc(sizeof(struct proc));
         procesi[i].TRAZIM = 0;
         procesi[i].BROJ = 0;
     }
@@ -88,9 +87,8 @@ int main(int argc, char **argv) {
     
     for(int i = 0; i < br_procesa; ++i) {
         wait();
-        }
+    }
    
     izlaz(0);
-
     return 0;
 }
