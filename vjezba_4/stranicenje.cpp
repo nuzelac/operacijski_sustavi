@@ -73,7 +73,7 @@ int main(int argc, char* argv[]) {
     br_okvira = atoi(argv[1]);
     br_zahtjeva = atoi(argv[2]);
 
-    srand(2);
+    srand(time(0));
 
     printf("Zahtjevi: ");
     for(int i = 0; i < br_zahtjeva; ++i) {
